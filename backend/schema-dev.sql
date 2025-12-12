@@ -1,8 +1,7 @@
 DROP DATABASE IF EXISTS ntwJob;
 -- CREATE DATABASE IF NOT EXISTS ntwJob;
--- CREATE DATABASE ntwJob CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
--- USE ntwJob;
-USE railway;
+CREATE DATABASE ntwJob CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE ntwJob;
 
 DROP TABLE IF EXISTS user;
 DROP TABLE IF EXISTS company;
