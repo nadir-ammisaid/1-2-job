@@ -19,7 +19,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: ["http://localhost:3000", "https://1-2-job.vercel.app"],
     credentials: true,
   })
 );
