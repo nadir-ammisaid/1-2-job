@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { AuthContext } from "../../contexts/AuthContext.js";
-import axios from "axios";
+import axios from "../../config/axiosConfig.js";
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
@@ -11,21 +11,21 @@ export function AuthProvider({ children }) {
   }, []);
 
   const checkAuthStatus = async () => {
+    const token = localStorage.getItem("auth_token");
+
+    if (!token) {
+      setLoading(false);
+      return;
+    }
+
     try {
       const response = await axios.get("/api/users/me");
       setUser(response.data);
     } catch (error) {
       console.error("Auth check failed:", error);
       setUser(null);
-
-      if (error.response?.status === 401) {
-        // Optionnel : appeler logout pour nettoyer les cookies
-        try {
-          await axios.post("/api/users/logout");
-        } catch (logoutError) {
-          console.error("Logout cleanup failed:", logoutError);
-        }
-      }
+      // Supprimer le token invalide
+      localStorage.removeItem("auth_token");
     } finally {
       setLoading(false);
     }
@@ -41,6 +41,7 @@ export function AuthProvider({ children }) {
     } catch (error) {
       console.error("Logout error:", error);
     }
+    localStorage.removeItem("auth_token");
     setUser(null);
   };
 

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "../../config/axiosConfig";
 import { useAuth } from "../../hooks/useAuth.js";
 import ApplicationCard from "./ApplicationCard";
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
-import axios from "axios";
+import axios from "../../config/axiosConfig.js";
 
 function SignInUpForm() {
   const navigate = useNavigate();
@@ -54,12 +54,20 @@ function SignInUpForm() {
         ...formData,
         role: "jobber",
       })
-      .then(() => {
+      .then((response) => {
+        if (response.data.token) {
+          localStorage.setItem("auth_token", response.data.token);
+        }
+
         setIsOk(true);
-        setMessage("✅ Account created successfully! Please sign in.");
+        setMessage("✅ Account created successfully! Redirecting...");
         setFormData({ first_name: "", last_name: "", email: "", password: "" });
         setConfirmPassword("");
-        setTimeout(() => setActiveTab("signin"), 1000);
+
+        setTimeout(() => {
+          navigate("/home");
+          window.location.reload();
+        }, 1000);
       })
       .catch((error) => {
         setIsOk(false);
@@ -87,6 +95,10 @@ function SignInUpForm() {
     axios
       .post("/api/users/login", loginForm)
       .then((response) => {
+        if (response.data.token) {
+          localStorage.setItem("auth_token", response.data.token);
+        }
+
         setIsOk(true);
         setMessage("✅ Login successful!");
 

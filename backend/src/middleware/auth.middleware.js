@@ -1,20 +1,41 @@
 import jwt from "jsonwebtoken";
 
-export function authenticateToken(req, res, next) {
-  const token = req.cookies.auth_token;
+// export function authenticateToken(req, res, next) {
+//   const token = req.cookies.auth_token;
 
-  if (!token) {
-    return res.status(401).json({ message: "Access token required" });
+//   if (!token) {
+//     return res.status(401).json({ message: "Access token required" });
+//   }
+
+//   jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+//     if (err) {
+//       return res.status(403).json({ message: "Invalid or expired token" });
+//     }
+
+//     req.user = user;
+//     next();
+//   });
+// }
+
+export function authenticateToken(req, res, next) {
+  const authHeader = req.headers["authorization"];
+  const token = authHeader && authHeader.split(" ")[1];
+
+  const cookieToken = req.cookies?.auth_token;
+
+  const finalToken = token || cookieToken;
+
+  if (!finalToken) {
+    return res.status(401).json({ message: "Access denied" });
   }
 
-  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
-    if (err) {
-      return res.status(403).json({ message: "Invalid or expired token" });
-    }
-
-    req.user = user;
+  try {
+    const decoded = jwt.verify(finalToken, process.env.JWT_SECRET);
+    req.user = decoded;
     next();
-  });
+  } catch (err) {
+    return res.status(403).json({ message: "Invalid token" });
+  }
 }
 
 export function requireAdmin(req, res, next) {
