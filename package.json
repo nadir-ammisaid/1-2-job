@@ -1,0 +1,12 @@
+{
+  "name": "12job",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\"",
+    "reset-db": "node backend/scripts/reset-db.js"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
