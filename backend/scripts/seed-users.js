@@ -118,35 +118,38 @@ const users = [
 async function seedUsers() {
   try {
     for (const user of users) {
-      const [rows] = await db.query("SELECT id FROM user WHERE email = ?", [
-        user.email,
-      ]);
+      // 🔍 Check if user exists (Promise wrapper)
+      const [rows] = await db
+        .promise()
+        .query("SELECT id FROM user WHERE email = ?", [user.email]);
 
       if (rows.length > 0) {
         console.log(`⏭️  ${user.email} existe déjà — skip`);
         continue;
       }
 
+      // Hash password
       const hashedPassword = await bcrypt.hash(user.password, 10);
 
-      await db.query(
+      // Insert user
+      await db.promise().query(
         `
-        INSERT INTO user
-        (
-          first_name,
-          last_name,
-          email,
-          phone,
-          city,
-          profession,
-          description,
-          hard_skills,
-          soft_skills,
-          password,
-          role
-        )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        `,
+          INSERT INTO user
+          (
+            first_name,
+            last_name,
+            email,
+            phone,
+            city,
+            profession,
+            description,
+            hard_skills,
+            soft_skills,
+            password,
+            role
+          )
+          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+          `,
         [
           user.first_name,
           user.last_name,
