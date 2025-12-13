@@ -14,10 +14,10 @@ function AdminHeader() {
     navigate("/");
   };
 
-  const handleHomeClick = () => {
-    navigate("/admin/dashboard");
-    setIsMenuOpen(false);
-  };
+  // const handleDashboardClick = () => {
+  //   navigate("/admin/dashboard");
+  //   setIsMenuOpen(false);
+  // };
 
   return (
     <header className="bg-white shadow-sm">
@@ -40,11 +40,18 @@ function AdminHeader() {
 
           <div className="hidden items-center space-x-4 md:flex">
             <button
-              onClick={handleHomeClick}
+              onClick={() => navigate("/home")}
+              className="rounded-lg border border-blue-600 px-6 py-2 font-semibold text-blue-600 transition-colors hover:border-blue-700 hover:bg-blue-50"
+              title="Back to Site"
+            >
+              Back to Site
+            </button>
+            {/* <button
+              onClick={handleDashboardClick}
               className="rounded-lg border border-blue-600 px-6 py-2 font-semibold text-blue-600 transition-colors hover:border-blue-700 hover:text-blue-700"
             >
-              Home
-            </button>
+              Dashboard
+            </button> */}
             <button
               onClick={handleLogout}
               className="rounded-lg bg-blue-600 px-6 py-2 font-semibold text-white transition-colors hover:bg-blue-700"
@@ -83,11 +90,17 @@ function AdminHeader() {
         >
           <nav className="flex flex-col space-y-3 border-t py-4">
             <button
-              onClick={handleHomeClick}
+              onClick={() => navigate("/home")}
+              className="rounded-lg border border-blue-600 px-6 py-2 text-center font-semibold text-blue-600 transition-colors hover:border-blue-700 hover:bg-blue-50"
+            >
+              Back to Site
+            </button>
+            {/* <button
+              onClick={handleDashboardClick}
               className="rounded-lg border border-blue-600 px-6 py-2 text-center font-semibold text-blue-600 transition-colors hover:border-blue-700 hover:text-blue-700"
             >
-              Home
-            </button>
+              Dashboard
+            </button> */}
             <button
               onClick={handleLogout}
               className="rounded-lg bg-blue-600 px-6 py-2 text-center font-semibold text-white transition-colors hover:bg-blue-700"
