@@ -6,7 +6,7 @@ import logo from "../../assets/12jobLogo.png";
 function Header({ isAuthenticated = false, showHomeButton = false }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const { logout, isAuthenticated: checkAuth } = useAuth();
+  const { logout, isAuthenticated: checkAuth, user } = useAuth();
 
   const handleLogout = () => {
     logout();
@@ -40,6 +40,12 @@ function Header({ isAuthenticated = false, showHomeButton = false }) {
     setIsMenuOpen(false);
   };
 
+  const handleAdminClick = (e) => {
+    e.preventDefault();
+    navigate("/admin/dashboard");
+    setIsMenuOpen(false);
+  };
+
   return (
     <header className="fixed left-0 right-0 top-0 z-50 bg-white shadow-sm">
       <div className="container mx-auto px-4 py-4 md:px-36">
@@ -70,6 +76,16 @@ function Header({ isAuthenticated = false, showHomeButton = false }) {
 
             {isAuthenticated ? (
               <>
+                {user?.role === "admin" && (
+                  <button
+                    onClick={handleAdminClick}
+                    className="rounded-lg border border-purple-600 px-6 py-2 font-semibold text-purple-600 transition-colors hover:border-purple-700 hover:bg-purple-50"
+                    title="Go to Admin Panel"
+                  >
+                    Admin Panel
+                  </button>
+                )}
+
                 <button
                   onClick={handleProfileClick}
                   className="rounded-lg border border-blue-600 px-6 py-2 font-semibold text-blue-600 transition-colors hover:border-blue-700 hover:text-blue-700"
@@ -133,6 +149,15 @@ function Header({ isAuthenticated = false, showHomeButton = false }) {
 
             {isAuthenticated ? (
               <>
+                {user?.role === "admin" && (
+                  <button
+                    onClick={handleAdminClick}
+                    className="rounded-lg border border-purple-600 px-6 py-2 text-center font-semibold text-purple-600 transition-colors hover:border-purple-700 hover:bg-purple-50"
+                  >
+                    Admin Panel
+                  </button>
+                )}
+
                 <button
                   onClick={handleProfileClick}
                   className="rounded-lg border border-blue-600 px-6 py-2 text-center font-semibold text-blue-600 transition-colors hover:border-blue-700 hover:text-blue-700"
