@@ -3,7 +3,9 @@ import { Application } from "../models/Application.js";
 // Get all applications for a user
 export async function getApplicationsByUserId(req, res) {
   try {
-    const applications = await Application.getByUserId(req.params.userId);
+    // Utiliser l'ID du token JWT au lieu du paramètre URL
+    const userId = req.user.id_user;
+    const applications = await Application.getByUserId(userId);
     res.json(applications);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -13,7 +15,12 @@ export async function getApplicationsByUserId(req, res) {
 // Create an application
 export async function createApplication(req, res) {
   try {
-    const result = await Application.create(req.body);
+    // S'assurer que l'id_user vient du token, pas du body
+    const applicationData = {
+      ...req.body,
+      id_user: req.user.id_user,
+    };
+    const result = await Application.create(applicationData);
     res.status(201).json({
       message: "Application created successfully",
       id_application: result.id_application,

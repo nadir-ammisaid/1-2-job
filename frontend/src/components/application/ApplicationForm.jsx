@@ -69,7 +69,7 @@ function ApplicationForm({ jobId, onSuccess }) {
         formData.phone !== user.phone || formData.city !== user.city;
 
       if (needsProfileUpdate) {
-        await axios.patch(`/api/users/${user.id_user}`, {
+        await axios.patch(`/api/users/me`, {
           phone: formData.phone,
           city: formData.city,
           first_name: user.first_name,
@@ -96,7 +96,6 @@ function ApplicationForm({ jobId, onSuccess }) {
       await axios.post("/api/applications", {
         message: formData.message,
         resume_path: resumePath,
-        id_user: user.id_user,
         id_job: jobId,
       });
 

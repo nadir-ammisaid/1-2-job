@@ -4,7 +4,7 @@ import StatCard from "./StateCard.jsx";
 import { useAuth } from "../../hooks/useAuth.js";
 
 function MySummary() {
-  const { user } = useAuth();
+  const { isAuthenticated } = useAuth();
   const [stats, setStats] = useState({
     submittedApplications: 0,
     registeredJobs: 0,
@@ -14,7 +14,7 @@ function MySummary() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!user?.id_user) {
+    if (!isAuthenticated()) {
       setLoading(false);
       return;
     }
@@ -24,9 +24,7 @@ function MySummary() {
         setLoading(true);
         setError(null);
 
-        const applicationsResponse = await axios.get(
-          `/api/applications/user/${user.id_user}`,
-        );
+        const applicationsResponse = await axios.get(`/api/applications/user`);
         const submittedApplications = applicationsResponse.data.length;
 
         const jobsResponse = await axios.get("/api/jobs");
@@ -51,7 +49,7 @@ function MySummary() {
     };
 
     fetchStats();
-  }, [user?.id_user]);
+  }, [isAuthenticated]);
 
   if (loading) {
     return (

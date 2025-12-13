@@ -9,7 +9,7 @@ import { authenticateToken } from "../middleware/auth.middleware.js";
 const router = express.Router();
 
 // All routes are protected
-router.get("/user/:userId", authenticateToken, getApplicationsByUserId);
+router.get("/user", authenticateToken, getApplicationsByUserId);
 router.post("/", authenticateToken, createApplication);
 router.delete("/:id", authenticateToken, deleteApplication);
 

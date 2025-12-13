@@ -108,7 +108,9 @@ export async function createUser(req, res) {
 
 export async function updateUser(req, res) {
   try {
-    const result = await User.update(req.params.id, req.body);
+    const userId = req.params.id || req.user.id_user;
+
+    const result = await User.update(userId, req.body);
     if (result.affectedRows === 0)
       return res.status(404).json({ message: "User not found" });
     res.json({ message: "User data successfully updated" });

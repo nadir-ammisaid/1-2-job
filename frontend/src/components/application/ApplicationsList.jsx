@@ -4,15 +4,15 @@ import { useAuth } from "../../hooks/useAuth.js";
 import ApplicationCard from "./ApplicationCard";
 
 function ApplicationsList() {
-  const { user, loading: authLoading, isAuthenticated } = useAuth();
+  const { loading: authLoading, isAuthenticated } = useAuth();
   const [applications, setApplications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!authLoading && isAuthenticated() && user) {
+    if (!authLoading && isAuthenticated()) {
       axios
-        .get(`/api/applications/user/${user.id_user}`)
+        .get(`/api/applications/user`)
         .then((response) => {
           setApplications(response.data);
           setLoading(false);
@@ -25,7 +25,7 @@ function ApplicationsList() {
     } else if (!authLoading && !isAuthenticated()) {
       setLoading(false);
     }
-  }, [user, authLoading, isAuthenticated]);
+  }, [authLoading, isAuthenticated]);
 
   const handleDelete = (id_application) => {
     axios
