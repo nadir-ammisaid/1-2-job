@@ -15,14 +15,15 @@ const router = express.Router();
 
 // Public routes
 router.post("/login", loginUser);
-router.post("/logout", logoutUser);
 router.post("/", createUser);
 
 // Protected routes
 router.get("/", authenticateToken, getAllUsers);
 router.get("/me", authenticateToken, getCurrentUser);
+router.patch("/me", authenticateToken, updateUser);
 router.get("/:id", authenticateToken, getUserById);
 router.patch("/:id", authenticateToken, updateUser);
 router.delete("/:id", authenticateToken, deleteUser);
+router.post("/logout", authenticateToken, logoutUser);
 
 export default router;

@@ -27,7 +27,7 @@ function EditProfile() {
     setError(null);
 
     try {
-      await axios.patch(`/api/users/${user.id_user}`, formData);
+      await axios.patch(`/api/users/me`, formData);
       updateUserProfile(formData);
       console.log("Data updated successfully");
       navigate("/profile");
