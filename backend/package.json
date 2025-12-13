@@ -10,7 +10,8 @@
     "start": "node server.js",
     "init-db": "node init-db.js",
     "create-admin": "node scripts/create-admin.js",
-    "create-admin:railway": "node scripts/create-admin.js railway"
+    "create-admin:railway": "node scripts/create-admin.js railway",
+    "seed-users": "node scripts/seed-users.js"
   },
   "keywords": [],
   "author": "",
