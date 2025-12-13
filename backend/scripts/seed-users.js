@@ -118,22 +118,29 @@ const users = [
 async function seedUsers() {
   try {
     for (const user of users) {
-      // 🔍 Check if user exists (Promise wrapper)
-      const [rows] = await db
-        .promise()
-        .query("SELECT id FROM user WHERE email = ?", [user.email]);
+      // Vérifier si l'utilisateur existe (par email)
+      const existingUser = await new Promise((resolve, reject) => {
+        db.query(
+          "SELECT id_user FROM user WHERE email = ?",
+          [user.email],
+          (err, results) => {
+            if (err) return reject(err);
+            resolve(results[0] || null);
+          }
+        );
+      });
 
-      if (rows.length > 0) {
+      if (existingUser) {
         console.log(`⏭️  ${user.email} existe déjà — skip`);
         continue;
       }
 
-      // Hash password
+      // Hash du mot de passe
       const hashedPassword = await bcrypt.hash(user.password, 10);
 
-      // Insert user
-      await db.promise().query(
-        `
+      // Insertion utilisateur
+      await new Promise((resolve, reject) => {
+        const sql = `
           INSERT INTO user
           (
             first_name,
@@ -149,21 +156,29 @@ async function seedUsers() {
             role
           )
           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-          `,
-        [
-          user.first_name,
-          user.last_name,
-          user.email,
-          user.phone,
-          user.city,
-          user.profession,
-          user.description,
-          user.hard_skills,
-          user.soft_skills,
-          hashedPassword,
-          user.role,
-        ]
-      );
+        `;
+
+        db.query(
+          sql,
+          [
+            user.first_name,
+            user.last_name,
+            user.email,
+            user.phone,
+            user.city,
+            user.profession,
+            user.description,
+            user.hard_skills,
+            user.soft_skills,
+            hashedPassword,
+            user.role,
+          ],
+          (err, result) => {
+            if (err) return reject(err);
+            resolve(result);
+          }
+        );
+      });
 
       console.log(`✅ Utilisateur créé : ${user.email}`);
     }
