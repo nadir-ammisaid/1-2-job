@@ -8,7 +8,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon server.js",
     "start": "node server.js",
-    "init-db": "node init-db.js"
+    "init-db": "node init-db.js",
+    "create-admin": "node scripts/create-admin.js",
+    "create-admin:railway": "node scripts/create-admin.js railway"
   },
   "keywords": [],
   "author": "",
