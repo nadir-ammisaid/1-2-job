@@ -1,7 +1,5 @@
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import db from "../src/config/connection.js";
-
-const SALT_ROUNDS = 12;
 
 const users = [
   {
@@ -129,7 +127,7 @@ async function seedUsers() {
         continue;
       }
 
-      const hashedPassword = await bcrypt.hash(user.password, SALT_ROUNDS);
+      const hashedPassword = await bcrypt.hash(user.password, 10);
 
       await db.query(
         `
