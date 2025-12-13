@@ -2,6 +2,7 @@ import Header from "../../components/layout/Header";
 import HeroSection from "../../components/home/HeroSection";
 import TitleSection from "../../components/home/TitleSection";
 import JobsSection from "../../components/job/JobSection";
+import Footer from "../../components/layout/Footer";
 
 function LandingPage() {
   return (
@@ -15,6 +16,7 @@ function LandingPage() {
 
         <JobsSection />
       </main>
+      <Footer />
     </div>
   );
 }
