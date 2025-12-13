@@ -63,16 +63,16 @@ CREATE TABLE application (
 
 
 
-INSERT INTO user (first_name, last_name, email, phone, city, profession, description, hard_skills, soft_skills, password, role)
-VALUES
-('Admin', 'User', 'admin@12job.com', '0600000000', 'Lyon', 'Administrator', 'Manages the 12job platform and oversees all operations.', 'SQL, PHP, Management, System Administration', 'Leadership, Communication, Problem Solving', 'hashed_admin_pass', 'admin'),
-('Nadir', 'AMMI-SAID', 'nadir.ammisaid@mail.com', '0611223344', 'Lyon', 'Full Stack Developer', 'Passionate full stack developer with expertise in modern web technologies and cloud solutions.', 'JavaScript, React, Node.js, Python, Docker', 'Team Collaboration, Adaptability, Critical Thinking', 'hashed_password1', 'jobber'),
-('Warith', 'DIMIA', 'warith.dimia@mail.com', '0677889900', 'Brignais', 'Full Stack Developer', 'Experienced developer specializing in scalable web applications and microservices architecture.', 'TypeScript, Vue.js, Express, MongoDB, Kubernetes', 'Problem Solving, Communication, Innovation', 'hashed_password2', 'jobber'),
-('Toni', 'SAGE', 'toni.sage@mail.com', '0655443322', 'Miribel', 'Full Stack Developer', 'Creative full stack developer focused on building elegant and performant user experiences.', 'HTML, CSS, React, Node.js, PostgreSQL, AWS', 'Creativity, Attention to Detail, Time Management', 'hashed_password3', 'jobber'),
-('Sophie', 'Martin', 'sophie.martin@mail.com', '0612345678', 'Toulouse', 'Data Analyst', 'Analytical professional transforming complex data into actionable business insights.', 'Python, SQL, Tableau, Excel, Statistical Analysis', 'Analytical Thinking, Precision, Curiosity', 'hashed_password4', 'jobber'),
-('Lucas', 'Dubois', 'lucas.dubois@mail.com', '0623456789', 'Bordeaux', 'UX/UI Designer', 'User-centered designer creating intuitive and beautiful digital experiences.', 'Figma, Adobe XD, Sketch, Prototyping, User Research', 'Empathy, Creativity, Collaboration', 'hashed_password5', 'jobber'),
-('Emma', 'Leroy', 'emma.leroy@mail.com', '0634567890', 'Nantes', 'Project Manager', 'Agile project manager driving successful digital transformation initiatives.', 'Scrum, Jira, MS Project, Budget Management', 'Organization, Leadership, Communication', 'hashed_password6', 'jobber'),
-('Mohamed', 'Benali', 'mohamed.benali@mail.com', '0645678901', 'Marseille', 'DevOps Engineer', 'Infrastructure specialist automating deployments and optimizing cloud environments.', 'Jenkins, Docker, Kubernetes, Terraform, CI/CD', 'Automation, Problem Solving, Efficiency', 'hashed_password7', 'jobber');
+-- INSERT INTO user (first_name, last_name, email, phone, city, profession, description, hard_skills, soft_skills, password, role)
+-- VALUES
+-- ('Admin', 'User', 'admin@12job.com', '0600000000', 'Lyon', 'Administrator', 'Manages the 12job platform and oversees all operations.', 'SQL, PHP, Management, System Administration', 'Leadership, Communication, Problem Solving', 'hashed_admin_pass', 'admin'),
+-- ('Nadir', 'AMMI-SAID', 'nadir.ammisaid@mail.com', '0611223344', 'Lyon', 'Full Stack Developer', 'Passionate full stack developer with expertise in modern web technologies and cloud solutions.', 'JavaScript, React, Node.js, Python, Docker', 'Team Collaboration, Adaptability, Critical Thinking', 'hashed_password1', 'jobber'),
+-- ('Warith', 'DIMIA', 'warith.dimia@mail.com', '0677889900', 'Brignais', 'Full Stack Developer', 'Experienced developer specializing in scalable web applications and microservices architecture.', 'TypeScript, Vue.js, Express, MongoDB, Kubernetes', 'Problem Solving, Communication, Innovation', 'hashed_password2', 'jobber'),
+-- ('Toni', 'SAGE', 'toni.sage@mail.com', '0655443322', 'Miribel', 'Full Stack Developer', 'Creative full stack developer focused on building elegant and performant user experiences.', 'HTML, CSS, React, Node.js, PostgreSQL, AWS', 'Creativity, Attention to Detail, Time Management', 'hashed_password3', 'jobber'),
+-- ('Sophie', 'Martin', 'sophie.martin@mail.com', '0612345678', 'Toulouse', 'Data Analyst', 'Analytical professional transforming complex data into actionable business insights.', 'Python, SQL, Tableau, Excel, Statistical Analysis', 'Analytical Thinking, Precision, Curiosity', 'hashed_password4', 'jobber'),
+-- ('Lucas', 'Dubois', 'lucas.dubois@mail.com', '0623456789', 'Bordeaux', 'UX/UI Designer', 'User-centered designer creating intuitive and beautiful digital experiences.', 'Figma, Adobe XD, Sketch, Prototyping, User Research', 'Empathy, Creativity, Collaboration', 'hashed_password5', 'jobber'),
+-- ('Emma', 'Leroy', 'emma.leroy@mail.com', '0634567890', 'Nantes', 'Project Manager', 'Agile project manager driving successful digital transformation initiatives.', 'Scrum, Jira, MS Project, Budget Management', 'Organization, Leadership, Communication', 'hashed_password6', 'jobber'),
+-- ('Mohamed', 'Benali', 'mohamed.benali@mail.com', '0645678901', 'Marseille', 'DevOps Engineer', 'Infrastructure specialist automating deployments and optimizing cloud environments.', 'Jenkins, Docker, Kubernetes, Terraform, CI/CD', 'Automation, Problem Solving, Efficiency', 'hashed_password7', 'jobber');
 
 
 
@@ -105,8 +105,8 @@ VALUES
 
 
 
-INSERT INTO application (message, resume_path, id_user, id_job)
-VALUES
-('I would like to join your team to contribute my development skills.', 'resumes/alice_doe.pdf', 2, 1),
-('Excited about your renewable mission, I want to be part of your projects.', 'resumes/julie_brown.pdf', 4, 2),
-('This internship is perfect to apply my Data Science knowledge.', 'resumes/karim_johnson.pdf', 3, 3);
+-- INSERT INTO application (message, resume_path, id_user, id_job)
+-- VALUES
+-- ('I would like to join your team to contribute my development skills.', 'resumes/alice_doe.pdf', 2, 1),
+-- ('Excited about your renewable mission, I want to be part of your projects.', 'resumes/julie_brown.pdf', 4, 2),
+-- ('This internship is perfect to apply my Data Science knowledge.', 'resumes/karim_johnson.pdf', 3, 3);
