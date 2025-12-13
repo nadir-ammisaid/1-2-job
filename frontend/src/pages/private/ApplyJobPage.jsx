@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Header from "../../components/layout/Header.jsx";
 import ApplicationForm from "../../components/application/ApplicationForm.jsx";
+import Footer from "../../components/layout/Footer.js";
 
 function ApplyJobPage() {
   const { jobId } = useParams();
@@ -26,6 +27,7 @@ function ApplyJobPage() {
         )}
         <ApplicationForm jobId={jobId} onSuccess={handleSuccess} />
       </main>
+      <Footer />
     </div>
   );
 }

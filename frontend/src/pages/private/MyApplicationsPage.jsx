@@ -1,5 +1,6 @@
 import Header from "../../components/layout/Header";
 import ApplicationsList from "../../components/application/ApplicationsList";
+import Footer from "../../components/layout/Footer";
 // import { useParams } from "react-router-dom";
 
 function MyApplicationsPage() {
@@ -13,6 +14,7 @@ function MyApplicationsPage() {
         {/* <ApplicationsList userId={4} /> */}
         <ApplicationsList />
       </main>
+      <Footer />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import MySummary from "../../components/home/MySummary";
 import SearchBar from "../../components/job/SearchBar";
 import JobsSection from "../../components/job/JobSection";
 import { useAuth } from "../../hooks/useAuth";
+import Footer from "../../components/layout/Footer";
 
 function HomePage() {
   const { user, isAuthenticated } = useAuth();
@@ -63,6 +64,7 @@ function HomePage() {
           />
         </section>
       </main>
+      <Footer />
     </div>
   );
 }
