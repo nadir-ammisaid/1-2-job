@@ -24,13 +24,17 @@ function AdminHeader() {
       <div className="container mx-auto px-4 py-4 md:px-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="flex h-12 w-12 items-center justify-center">
+            <button
+              onClick={() => navigate("/home")}
+              className="flex h-12 w-12 items-center justify-center transition-transform hover:scale-105"
+              title="Return to site"
+            >
               <img
                 src={logo}
                 alt="1, 2, Job Logo"
                 className="h-full w-full object-contain"
               />
-            </div>
+            </button>
             <span className="text-xl font-bold text-blue-600">Admin Panel</span>
           </div>
 

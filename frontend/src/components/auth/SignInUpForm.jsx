@@ -105,7 +105,11 @@ function SignInUpForm() {
         login(response.data.user);
 
         setTimeout(() => {
-          navigate("/home");
+          if (response.data.user.role === "admin") {
+            navigate("/admin/dashboard");
+          } else {
+            navigate("/home");
+          }
         }, 500);
       })
       .catch((error) => {
